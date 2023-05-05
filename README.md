@@ -3,7 +3,7 @@
 - User Personas
   - Prompt Engineer
     - A Chat Bot Designer that will use the Build-A-Bot website for designing customized bots.
-  - Company that has a website with multiple Chat Bots and wants to use Build-A-Bot as a bot-building platform for their Prompt Engineers
+  - Company that has a website with multiple Chat Bots and wants to use Build-A-Bot as a bot-building platform for their Prompt Engineers that include Web and API access
     - Khan Acadamy
       - Historical Figure Bots
       - Subject Expert Bots
