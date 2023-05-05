@@ -1,4 +1,4 @@
-namespace FrontEnd.Shared
+namespace Web.Shared
 {
     public class WeatherForecast
     {

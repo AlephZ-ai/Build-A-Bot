@@ -1,9 +1,9 @@
-using FrontEnd.Shared;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Web.Resource;
+using Web.Shared;
 
-namespace FrontEnd.Server.Controllers
+namespace Web.Server.Controllers
 {
     [Authorize]
     [ApiController]

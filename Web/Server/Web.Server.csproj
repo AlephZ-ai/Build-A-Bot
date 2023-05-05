@@ -4,25 +4,25 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>FrontEnd.Server-22eb373c-69b9-4615-bac2-48d4ba6a765d</UserSecretsId>
+    <UserSecretsId>Web.Server-da412385-0f15-461e-ab96-b3096d865e28</UserSecretsId>
     <WebProject_DirectoryAccessLevelKey>0</WebProject_DirectoryAccessLevelKey>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="7.0.5" />
-    <PackageReference Include="Microsoft.Identity.Web.MicrosoftGraph" Version="1.25.3" />
+    <PackageReference Include="Microsoft.Identity.Web.MicrosoftGraph" Version="1.24.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Client\FrontEnd.Client.csproj" />
-    <ProjectReference Include="..\Shared\FrontEnd.Shared.csproj" />
+    <ProjectReference Include="..\Client\Web.Client.csproj" />
+    <ProjectReference Include="..\Shared\Web.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.5" NoWarn="NU1605" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="7.0.5" NoWarn="NU1605" />
-    <PackageReference Include="Microsoft.Identity.Web" Version="1.25.3" />
-    <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.25.3" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="1.24.1" />
+    <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.16.0" />
   </ItemGroup>
 
 </Project>

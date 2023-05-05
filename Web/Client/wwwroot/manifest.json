@@ -1,6 +1,6 @@
 {
-  "name": "FrontEnd",
-  "short_name": "FrontEnd",
+  "name": "Web",
+  "short_name": "Web",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
