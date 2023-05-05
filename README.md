@@ -49,6 +49,7 @@
 - Specialized Models
   - Law
   - Medicine
+  - NoRA
 - Generalized Data Sets
   - Open Source Generalized Data Sets
 - Specialized Data Sets
