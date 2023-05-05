@@ -1,6 +1,6 @@
 # Build-A-Bot
 ## Product
-A website with a delightful UI experience to help Prompt Engineers create safe and customized Chat Bots with Web and API access
+A website with a delightful UI experience to help Prompt Engineers create aligned and customized Chat Bots with Web and API access
 ## Personas
 - User Personas
   - Prompt Engineer
