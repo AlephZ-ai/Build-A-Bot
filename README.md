@@ -1,6 +1,7 @@
 # Build-A-Bot
 ## Product
 A website with a delightful UI experience to help Prompt Engineers create aligned and customized Chat Bots with Web and API access
+# Build-A-Bot
 ## Personas
 - User Personas
   - Prompt Engineer
@@ -50,13 +51,17 @@ A website with a delightful UI experience to help Prompt Engineers create aligne
   - NoRA
 - Specialized Models
   - Law
+    - Contract
   - Medicine
   - NoRA
 - Generalized Data Sets
   - Open Source Generalized Data Sets
 - Specialized Data Sets
   - Heuristic Imperatives
+  - Help Desk
+  - Documentation
   - Law
+    - Contract
   - Medicine
 - Socially Engaging
   - Generate Image Icons for the Bots and other things like that
