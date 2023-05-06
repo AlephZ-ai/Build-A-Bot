@@ -12,7 +12,8 @@
 				"ms-dotnettools.blazorwasm-companion",
 				"humao.rest-client",
 				"jmrog.vscode-nuget-package-manager",
-				"aliasadidev.nugetpackagemanagergui"
+				"aliasadidev.nugetpackagemanagergui",
+				"ms-azuretools.vscode-docker"
 			]
 		}
 	},
@@ -20,16 +21,13 @@
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 
-	// Configure tool-specific properties.
-	// "customizations": {},
-
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [5000, 5001, 5432],
-	// "portsAttributes": {
-	//		"5001": {
-	//			"protocol": "https"
-	//		}
-	// }
+	"forwardPorts": [7259],
+	"portsAttributes": {
+		"7259": {
+			"protocol": "https"
+		}
+	},
 
 	// [Optional] To reuse of your local HTTPS dev cert:
 	//

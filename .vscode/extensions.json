@@ -4,6 +4,7 @@
         "ms-dotnettools.blazorwasm-companion",
         "humao.rest-client",
         "jmrog.vscode-nuget-package-manager",
-        "aliasadidev.nugetpackagemanagergui"
+        "aliasadidev.nugetpackagemanagergui",
+        "ms-azuretools.vscode-docker"
     ]
 }
