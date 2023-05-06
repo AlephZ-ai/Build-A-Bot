@@ -5,7 +5,6 @@
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/dotnet:0-7.0",
 	"shutdownAction": "stopContainer",
-	"appPort": 7259,
 	"customizations": {
 		"vscode": {
 			"extensions": [
