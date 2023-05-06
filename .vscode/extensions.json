@@ -2,6 +2,8 @@
     "recommendations": [
         "ms-dotnettools.csharp",
         "ms-dotnettools.blazorwasm-companion",
-        "humao.rest-client"
+        "humao.rest-client",
+        "jmrog.vscode-nuget-package-manager",
+        "aliasadidev.nugetpackagemanagergui"
     ]
 }
