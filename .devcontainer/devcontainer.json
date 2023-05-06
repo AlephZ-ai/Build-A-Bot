@@ -29,6 +29,11 @@
 		}
 	},
 
+	"remoteEnv": {
+		"ASPNETCORE_Kestrel__Certificates__Default__Password": "devcertpass",
+		"ASPNETCORE_Kestrel__Certificates__Default__Path": "/devcert.pfx"
+	},
+
 	// [Optional] To reuse of your local HTTPS dev cert:
 	//
 	// 1. Export it locally using this command:
