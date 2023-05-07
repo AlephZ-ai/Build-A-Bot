@@ -24,12 +24,10 @@ services:
       - ../..:/workspaces:cached
       # Windows
       - $APPDATA/Microsoft/UserSecrets:/home/vscode/.microsoft/usersecrets:ro
-      # This might be bad, not sure
-      #- $LOCALAPPDATA\ASP.NET\DataProtection-Keys:/home/vscode/.aspnet/DataProtection-Keys/
+      - $USERPROFILE/.ssh:/home/vscode/.ssh:ro
       # Mac/Linux
       #- $HOME/.microsoft/usersecrets:/home/vscode/.microsoft/usersecrets:ro
-      ## This might be bad, not sure
-      ##- $HOME/.aspnet/DataProtection-Keys:/home/vscode/.aspnet/DataProtection-Keys/
+      #- $HOME/.ssh:/home/vscode/.ssh:ro
 
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
