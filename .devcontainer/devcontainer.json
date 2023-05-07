@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/dotnet-postgres
 {
-    "name": "C# (.NET) and PostgreSQL",
+    "name": "Build-A-Bot Dev Container",
     "dockerComposeFile": "docker-compose.yml",
     "service": "web",
     "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
@@ -38,6 +38,11 @@
 			"userGid": "1000",
 			"upgradePackages": "true",
 			"nonFreePackages": "true"
+		},
+		// https://github.com/rocker-org/devcontainer-features/tree/main/src/apt-packages
+		"ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+			"packages": "postgresql-client",
+			"updatePackages": "true"
 		},
 		// https://github.com/devcontainers/features/tree/main/src/git
 		"ghcr.io/devcontainers/features/git:1": {

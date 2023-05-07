@@ -13,7 +13,7 @@ services:
         VARIANT: "7.0"
 
     networks:
-      - web
+      - default
 
     volumes:
       - ../..:/workspaces:cached
@@ -22,32 +22,47 @@ services:
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
 
-    # Runs app on the same network as the database container, allows "forwardPorts" in devcontainer.json function.
-    # network_mode: service:db
-
-    # Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-    # user: root
-
-    # Use "forwardPorts" in **devcontainer.json** to forward an app port locally. 
-    # (Adding the "ports" property to this file will not forward from a Codespace.)
-
-  db:
-    image: postgres:15.2
+  # https://github.com/citusdata/docker/blob/master/docker-compose.yml
+  master:
+    container_name: "${COMPOSE_PROJECT_NAME:-citus}_master"
+    image: "citusdata/citus"
     restart: unless-stopped
+    ports: ["${COORDINATOR_EXTERNAL_PORT:-5432}:5432"]
+    labels: ["com.citusdata.role=Master"]
     networks:
-      - web
+      - default
+    environment: &AUTH
+      POSTGRES_USER: "${POSTGRES_USER:-postgres}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:-postgres}"
+      PGUSER: "${POSTGRES_USER:-postgres}"
+      PGPASSWORD: "${POSTGRES_PASSWORD}"
+      POSTGRES_HOST_AUTH_METHOD: "${POSTGRES_HOST_AUTH_METHOD:-trust}"
+  manager:
+    container_name: "${COMPOSE_PROJECT_NAME:-citus}_manager"
+    image: "citusdata/membership-manager"
+    restart: unless-stopped
     volumes:
-      - postgres-data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_DB: postgres
-    # Add "forwardPorts": ["5432"] to **devcontainer.json** to forward PostgreSQL locally.
-    # (Adding the "ports" property to this file will not forward from a Codespace.)
-
+      - "${DOCKER_SOCK:-/var/run/docker.sock}:/var/run/docker.sock"
+      - healthcheck-volume:/healthcheck
+    depends_on: [master]
+    networks:
+      - default
+    environment: *AUTH
+  worker:
+    image: "citusdata/citus"
+    restart: unless-stopped
+    labels: ["com.citusdata.role=Worker"]
+    depends_on: [manager]
+    networks:
+      - default
+    environment: *AUTH
+    command: "/wait-for-manager.sh"
+    volumes:
+      - healthcheck-volume:/healthcheck
+ 
 volumes:
     data-protection-keys:
-    postgres-data:
+    healthcheck-volume:
 
 networks:
-  web:
+  default:

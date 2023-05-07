@@ -30,9 +30,10 @@ namespace Web
             });
 
             var app = builder.Build();
-            app.UseForwardedHeaders();
 
             // Configure the HTTP request pipeline.
+            app.UseHsts();
+            app.UseForwardedHeaders();
             if (app.Environment.IsDevelopment())
             {
                 app.UseWebAssemblyDebugging();
@@ -40,7 +41,6 @@ namespace Web
             else
             {
                 app.UseExceptionHandler("/Error");
-                app.UseHsts();
             }
 
             app.UseHttpsRedirection();
