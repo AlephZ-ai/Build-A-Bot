@@ -29,6 +29,9 @@
 	"features": {
 		"ghcr.io/devcontainers/features/git:1": {
 			"version": "os-provided"
+		},
+		"ghcr.io/devcontainers/features/node:1": {
+			"version": "node"
 		}
 	},
 
@@ -45,8 +48,9 @@
 
 	"mounts": [
 		{
+			// ${env:HOME} is null Windows, so use ${env:USERPROFILE} instead. ${env:USERPROFILE} is null on Linux, so this works for both.
 			"source": "${env:HOME}${env:APPDATA}/Microsoft/UserSecrets",
-			"target": "${localEnv:HOME}/.microsoft/usersecrets",
+			"target": "/home/vscode/.microsoft/usersecrets",
 			"type": "bind"
 		}
 	],

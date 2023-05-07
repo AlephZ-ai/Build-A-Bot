@@ -13,8 +13,6 @@ services:
         VARIANT: "7.0"
         INSTALL_ZSH: "true"
         UPGRADE_PACKAGES: "true"
-        INSTALL_NODE: "true"
-        NODE_VERSION: "node"
         INSTALL_AZURE_CLI: "true"
 
     networks:
@@ -22,6 +20,7 @@ services:
 
     volumes:
       - ../..:/workspaces:cached
+      - data-protection-keys:/home/vscode/.aspnet/DataProtection-Keys
 
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
@@ -50,6 +49,7 @@ services:
     # (Adding the "ports" property to this file will not forward from a Codespace.)
 
 volumes:
+    data-protection-keys:
     postgres-data:
 
 networks:
