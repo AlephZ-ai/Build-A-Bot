@@ -17,8 +17,18 @@ namespace Web
 
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
+            builder.Services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders =
+                    ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+            });
+            builder.Services.AddHsts(options =>
+            {
+                options.MaxAge = TimeSpan.FromDays(1);
+            });
 
             var app = builder.Build();
+            app.UseForwardedHeaders();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
