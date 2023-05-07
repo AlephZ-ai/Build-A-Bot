@@ -20,7 +20,8 @@
 				"GitHub.remotehub",
 				"GitHub.copilot-nightly",
 				"GitHub.copilot-labs",
-				"github.vscode-github-actions"
+				"github.vscode-github-actions",
+				"ms-vscode-remote.remote-containers"
 			]
 		}
 	},
@@ -41,6 +42,11 @@
 		// https://github.com/devcontainers/features/tree/main/src/git
 		"ghcr.io/devcontainers/features/git:1": {
 			"version": "os-provided"
+		},
+		// https://github.com/devcontainers/features/tree/main/src/git-lfs
+		"ghcr.io/devcontainers/features/git-lfs:1": {
+			"version": "latest",
+			"autoPull": true
 		},
 		// https://github.com/devcontainers/features/tree/main/src/node
 		"ghcr.io/devcontainers/features/node:1": {
@@ -103,7 +109,7 @@
 	//      "mounts": [ "source=${env:HOME}${env:USERPROFILE}/.aspnet/https,target=/home/vscode/.aspnet/https,type=bind" ],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "dotnet clean || true && dotnet restore && dotnet build --configuration Debug",
+	"postCreateCommand": "sudo chsh \"$(id -un)\" --shell \"/usr/bin/zsh\" && dotnet clean || true && dotnet restore && dotnet build --configuration Debug",
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"

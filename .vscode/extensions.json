@@ -12,6 +12,7 @@
         "github.remotehub",
         "github.copilot-nightly",
         "github.copilot-labs",
-        "github.vscode-github-actions"
+        "github.vscode-github-actions",
+        "ms-vscode-remote.remote-containers"
     ]
 }
