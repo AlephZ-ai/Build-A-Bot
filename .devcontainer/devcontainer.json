@@ -15,7 +15,12 @@
 				"aliasadidev.nugetpackagemanagergui",
 				"ms-azuretools.vscode-docker",
 				"ms-dotnettools.vscode-dotnet-runtime",
-				"GitHub.codespaces"
+				"GitHub.codespaces",
+				"GitHub.vscode-pull-request-github",
+				"GitHub.remotehub",
+				"GitHub.copilot-nightly",
+				"GitHub.copilot-labs",
+				"github.vscode-github-actions"
 			]
 		}
 	},
@@ -41,7 +46,7 @@
 	"mounts": [
 		{
 			"source": "${env:HOME}${env:APPDATA}/Microsoft/UserSecrets",
-			"target": "${localEnv:HOME}/.microsoft/usersecrets:ro",
+			"target": "${localEnv:HOME}/.microsoft/usersecrets",
 			"type": "bind"
 		}
 	],
