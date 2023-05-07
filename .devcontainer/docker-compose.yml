@@ -3,7 +3,9 @@ version: '3.8'
 services:
   app:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_Kestrel__Certificates__Default__Password: devcertpass
+      ASPNETCORE_Kestrel__Certificates__Default__Path: /devcert.pfx
     build:
       context: .
       dockerfile: Dockerfile
@@ -17,6 +19,10 @@ services:
 
     volumes:
       - ../..:/workspaces:cached
+      # Windows
+      - $APPDATA/Microsoft/UserSecrets:/home/vscode/.microsoft/usersecrets:ro
+      # Mac/Linux
+      #- $HOME/.microsoft/usersecrets:/home/vscode/.microsoft/usersecrets:ro
 
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
@@ -43,4 +49,4 @@ services:
 #     # (Adding the "ports" property to this file will not forward from a Codespace.)
 
 # volumes:
-#   postgres-data:
+#     postgres-data:
