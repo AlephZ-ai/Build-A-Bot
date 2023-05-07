@@ -32,6 +32,9 @@
 		},
 		"ghcr.io/devcontainers/features/node:1": {
 			"version": "node"
+		},
+		"ghcr.io/devcontainers/features/azure-cli:1": {
+			"version": "latest"
 		}
 	},
 
@@ -81,7 +84,5 @@
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "dotnet clean || true && dotnet restore && dotnet build --configuration Debug",
 
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
 	"remoteUser": "vscode"
 }

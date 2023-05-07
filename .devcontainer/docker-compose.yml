@@ -13,7 +13,6 @@ services:
         VARIANT: "7.0"
         INSTALL_ZSH: "true"
         UPGRADE_PACKAGES: "true"
-        INSTALL_AZURE_CLI: "true"
 
     networks:
       - web
