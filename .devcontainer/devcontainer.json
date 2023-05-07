@@ -27,12 +27,33 @@
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
+		// https://github.com/devcontainers/features/tree/main/src/common-utils
+		"ghcr.io/devcontainers/features/common-utils:2": {
+			"installZsh": "true",
+			"configureZshAsDefaultShell": "true",
+			"installOhMyZsh": "true",
+			"username": "vscode",
+			"userUid": "1000",
+			"userGid": "1000",
+			"upgradePackages": "true",
+			"nonFreePackages": "true"
+		},
+		// https://github.com/devcontainers/features/tree/main/src/git
 		"ghcr.io/devcontainers/features/git:1": {
 			"version": "os-provided"
 		},
+		// https://github.com/devcontainers/features/tree/main/src/node
 		"ghcr.io/devcontainers/features/node:1": {
 			"version": "node"
 		},
+		// https://github.com/devcontainers/features/tree/main/src/docker-outside-of-docker
+		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+			"version": "latest",
+			"moby": "true",
+			"dockerDashComposeVersion": "v2",
+			"installDockerBuildx": "true"
+		},
+		// https://github.com/devcontainers/features/tree/main/src/azure-cli
 		"ghcr.io/devcontainers/features/azure-cli:1": {
 			"version": "latest"
 		}
@@ -84,5 +105,7 @@
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "dotnet clean || true && dotnet restore && dotnet build --configuration Debug",
 
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
 	"remoteUser": "vscode"
 }

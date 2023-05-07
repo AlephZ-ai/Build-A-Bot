@@ -11,8 +11,6 @@ services:
       dockerfile: Dockerfile
       args:
         VARIANT: "7.0"
-        INSTALL_ZSH: "true"
-        UPGRADE_PACKAGES: "true"
 
     networks:
       - web
