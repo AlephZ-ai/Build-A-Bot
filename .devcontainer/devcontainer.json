@@ -21,7 +21,11 @@
 	},
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
+	"features": {
+		"ghcr.io/devcontainers/features/git:1": {
+			"version": "os-provided"
+		}
+	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [5432,7259],
@@ -34,8 +38,13 @@
 	// "remoteEnv": {
 	// },
 
-	// "mounts": [
-	// ],
+	"mounts": [
+		{
+			"source": "${env:HOME}${env:APPDATA}/Microsoft/UserSecrets",
+			"target": "${localEnv:HOME}/.microsoft/usersecrets:ro",
+			"type": "bind"
+		}
+	],
 
 	// [Optional] To reuse of your local HTTPS dev cert:
 	//
