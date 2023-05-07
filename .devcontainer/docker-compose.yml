@@ -21,8 +21,10 @@ services:
       - ../..:/workspaces:cached
       # Windows
       - $APPDATA/Microsoft/UserSecrets:/home/vscode/.microsoft/usersecrets:ro
+      - $LOCALAPPDATA\ASP.NET\DataProtection-Keys:/home/vscode/.aspnet/DataProtection-Keys/
       # Mac/Linux
       #- $HOME/.microsoft/usersecrets:/home/vscode/.microsoft/usersecrets:ro
+      #- HOME/.aspnet/DataProtection-Keys:/home/vscode/.aspnet/DataProtection-Keys/
 
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
