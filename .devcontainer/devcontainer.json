@@ -48,20 +48,33 @@
 			"version": "latest",
 			"autoPull": true
 		},
+		// https://github.com/devcontainers/features/tree/main/src/docker-in-docker
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+			"version": "latest",
+			"moby": "true",
+			"azureDnsAutoDetection": "true",
+			"dockerDashComposeVersion": "v2",
+			"installDockerBuildx": "true"
+		},
+		// https://github.com/devcontainers/features/tree/main/src/docker-outside-of-docker
+		// "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+		// 	"version": "latest",
+		// 	"moby": "true",
+		// 	"dockerDashComposeVersion": "v2",
+		// 	"installDockerBuildx": "true"
+		// },
 		// https://github.com/devcontainers/features/tree/main/src/node
 		"ghcr.io/devcontainers/features/node:1": {
 			"version": "node"
 		},
-		// https://github.com/devcontainers/features/tree/main/src/docker-outside-of-docker
-		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
-			"version": "latest",
-			"moby": "true",
-			"dockerDashComposeVersion": "v2",
-			"installDockerBuildx": "true"
-		},
 		// https://github.com/devcontainers/features/tree/main/src/azure-cli
 		"ghcr.io/devcontainers/features/azure-cli:1": {
 			"version": "latest"
+		},
+		// https://github.com/devcontainers/features/tree/main/src/github-cli
+		"ghcr.io/devcontainers/features/github-cli:1": {
+			"version": "latest",
+			"installDirectlyFromGitHubRelease": "true"
 		}
 	},
 
