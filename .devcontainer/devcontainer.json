@@ -99,20 +99,20 @@
 			"autoPull": true
 		},
 		// https://github.com/devcontainers/features/tree/main/src/docker-in-docker
-		"ghcr.io/devcontainers/features/docker-in-docker:2": {
-			"version": "latest",
-			"moby": "true",
-			"azureDnsAutoDetection": "true",
-			"dockerDashComposeVersion": "v2",
-			"installDockerBuildx": "true"
-		},
-		// https://github.com/devcontainers/features/tree/main/src/docker-outside-of-docker
-		// "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+		// "ghcr.io/devcontainers/features/docker-in-docker:2": {
 		// 	"version": "latest",
 		// 	"moby": "true",
+		// 	"azureDnsAutoDetection": "true",
 		// 	"dockerDashComposeVersion": "v2",
 		// 	"installDockerBuildx": "true"
 		// },
+		// https://github.com/devcontainers/features/tree/main/src/docker-outside-of-docker
+		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+			"version": "latest",
+			"moby": "true",
+			"dockerDashComposeVersion": "v2",
+			"installDockerBuildx": "true"
+		},
 		// https://github.com/devcontainers/features/tree/main/src/node
 		"ghcr.io/devcontainers/features/node:1": {
 			"version": "node",
@@ -148,18 +148,10 @@
 	},
 
     "mounts": [
-		// ${env:HOME} is null Windows, so use ${env:APPDATA} instead. ${env:APPDATA} is null on Mac/Linux, so this works for both.
-		{
-			"source": "${env:HOME}${env:APPDATA}/Microsoft/UserSecrets/Web.Server-da412385-0f15-461e-ab96-b3096d865e28",
-			"target": "/home/vscode/.microsoft/usersecrets/Web.Server-da412385-0f15-461e-ab96-b3096d865e28",
-			"type": "bind"
-		},
-		// ${env:HOME} is null Windows, so use ${env:USERPROFILE} instead. ${env:USERPROFILE} is null on Mac/Linux, so this works for both.
-		{
-			"source": "${env:HOME}${env:USERPROFILE}/.aspnet/https",
-			"target": "/home/vscode/.aspnet/https",
-			"type": "bind"
-		}
+		// ${localEnv:HOME} is null Windows, so use ${localEnv:APPDATA} instead. ${localEnv:APPDATA} is null on Mac/Linux, so this works for both.
+		"source=${localEnv:HOME}${localEnv:APPDATA}/Microsoft/UserSecrets/Web.Server-da412385-0f15-461e-ab96-b3096d865e28,target=/home/vscode/.microsoft/usersecrets/Web.Server-da412385-0f15-461e-ab96-b3096d865e28,type=bind,consistency=cached",
+		// ${localEnv:HOME} is null Windows, so use ${localEnv:USERPROFILE} instead. ${localEnv:USERPROFILE} is null on Mac/Linux, so this works for both.
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.aspnet/https,target=/home/vscode/.aspnet/https"
 	],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
