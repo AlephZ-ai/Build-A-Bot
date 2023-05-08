@@ -24,7 +24,20 @@
 				"ms-vscode-remote.remote-containers"
 			],
 			"settings": {
-				"terminal.integrated.defaultProfile.linux": "zsh"
+				"terminal.integrated.profiles.windows": {
+					"pwsh": {
+					  "source": "PowerShell",
+					  "args": ["-NoProfile"]
+					}
+				  },
+				  "terminal.integrated.profiles.linux": {
+					"zsh": {
+					  "path": "zsh",
+					  "args": ["-l"]
+					}
+				  },
+				  "terminal.integrated.defaultProfile.windows": "pwsh",
+				  "terminal.integrated.defaultProfile.linux": "zsh"
 			}
 		}
 	},
