@@ -148,22 +148,10 @@
 	},
 
 	"mounts": [
-		{
-			// ${env:HOME} is null Windows, so use ${env:APPDATA} instead. ${env:APPDATA} is null on Mac/Linux, so this works for both.
-			"source": "${env:HOME}${env:APPDATA}/Microsoft/UserSecrets",
-			"target": "/.microsoft/usersecrets",
-			"type": "bind"
-		},
-		{
-			// ${env:HOME} is null Windows, so use ${env:USERPROFILE} instead. ${env:USERPROFILE} is null on Mac/Linux, so this works for both.
-			"source": "${env:HOME}${env:USERPROFILE}/.aspnet/https",
-			"target": "/.aspnet/https",
-			"type": "bind"
-		}
 	],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "cp -R /.microsoft/usersecrets /home/vscode/.microsoft/usersecrets && chown -R vscode:vscode /home/vscode/.microsoft/usersecrets && cp -R /.aspnet/https /home/vscode/.aspnet/https && chown -R vscode:vscode /home/vscode/.aspnet/https && dotnet clean || true && dotnet restore && dotnet build --configuration Debug",
+	"postCreateCommand": "dotnet clean || true && dotnet restore && dotnet build --configuration Debug",
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
