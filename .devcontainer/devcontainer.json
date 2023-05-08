@@ -51,22 +51,22 @@
 		"ghcr.io/devcontainers-contrib/features/postgres-asdf:1": {
 			"version": "latest"
 		},
-		// https://github.com/devcontainers-contrib/features/tree/main/src/bash-command
-		// "ghcr.io/devcontainers-contrib/features/bash-command:1": {
-		// 	"command": "bash"
-		// },
 		// https://github.com/devcontainers/features/tree/main/src/dotnet
 		"ghcr.io/devcontainers/features/dotnet:1": {
 			"version": "latest",
 			"runtimeOnly": "false",
 			"installUsingApt": "true"
 		},
+		// https://github.com/devcontainers-contrib/features/tree/main/src/bash-command
+		"ghcr.io/devcontainers-contrib/features/bash-command:1": {
+			"command": "dotnet dev-certs https --trust"
+		},
 		// https://github.com/dev-wasm/dev-wasm-feature/blob/main/src/dotnet-wasi/devcontainer-feature.json
 		"devwasm.azurecr.io/dev-wasm/dev-wasm-feature/dotnet-wasi:0": {},
 		// https://github.com/devcontainers/features/tree/main/src/powershell
 		"ghcr.io/devcontainers/features/powershell:1": {
 			"version": "latest",
-			"modules": "",
+			"modules": ""
 		},
 		// https://github.com/devcontainers/features/tree/main/src/git
 		"ghcr.io/devcontainers/features/git:1": {
@@ -128,35 +128,18 @@
 
 	"mounts": [
 		{
-			// ${env:HOME} is null Windows, so use ${env:USERPROFILE} instead. ${env:USERPROFILE} is null on Linux, so this works for both.
+			// ${env:HOME} is null Windows, so use ${env:APPDATA} instead. ${env:APPDATA} is null on Mac/Linux, so this works for both.
 			"source": "${env:HOME}${env:APPDATA}/Microsoft/UserSecrets",
 			"target": "/home/vscode/.microsoft/usersecrets",
 			"type": "bind"
+		},
+		{
+			// ${env:HOME} is null Windows, so use ${env:USERPROFILE} instead. ${env:USERPROFILE} is null on Mac/Linux, so this works for both.
+			"source": "${env:HOME}${env:USERPROFILE}/.aspnet/https",
+			"target": "/home/vscode/.aspnet/https",
+			"type": "bind"
 		}
 	],
-
-	// [Optional] To reuse of your local HTTPS dev cert:
-	//
-	// 1. Export it locally using this command:
-	//    * Windows PowerShell:
-	//        dotnet dev-certs https --trust; dotnet dev-certs https -ep "$env:USERPROFILE/.aspnet/https/aspnetapp.pfx" -p "SecurePwdGoesHere"
-	//    * macOS/Linux terminal:
-	//        dotnet dev-certs https --trust; dotnet dev-certs https -ep "${HOME}/.aspnet/https/aspnetapp.pfx" -p "SecurePwdGoesHere"
-	// 
-	// 2. Uncomment these 'remoteEnv' lines:
-	//    "remoteEnv": {
-	// 	      "ASPNETCORE_Kestrel__Certificates__Default__Password": "SecurePwdGoesHere",
-	//        "ASPNETCORE_Kestrel__Certificates__Default__Path": "/home/vscode/.aspnet/https/aspnetapp.pfx",
-	//    },
-	//
-	// 3. Do one of the following depending on your scenario:
-	//    * When using GitHub Codespaces and/or Remote - Containers:
-	//      1. Start the container
-	//      2. Drag ~/.aspnet/https/aspnetapp.pfx into the root of the file explorer
-	//      3. Open a terminal in VS Code and run "mkdir -p /home/vscode/.aspnet/https && mv aspnetapp.pfx /home/vscode/.aspnet/https"
-	//
-	//    * If only using Remote - Containers with a local container, uncomment this line instead:
-	//      "mounts": [ "source=${env:HOME}${env:USERPROFILE}/.aspnet/https,target=/home/vscode/.aspnet/https,type=bind" ],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "dotnet clean || true && dotnet restore && dotnet build --configuration Debug",
