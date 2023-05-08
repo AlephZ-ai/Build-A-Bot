@@ -78,9 +78,9 @@
 			"installUsingApt": "true"
 		},
 		// https://github.com/devcontainers-contrib/features/tree/main/src/bash-command
-		"ghcr.io/devcontainers-contrib/features/bash-command:1": {
-			"command": "chown vscode:vscode /home/vscode/.aspnet/https/aspnetapp.pfx"
-		},
+		// "ghcr.io/devcontainers-contrib/features/bash-command:1": {
+		// 	"command": "bash"
+		// },
 		// https://github.com/dev-wasm/dev-wasm-feature/blob/main/src/dotnet-wasi/devcontainer-feature.json
 		"devwasm.azurecr.io/dev-wasm/dev-wasm-feature/dotnet-wasi:0": {},
 		// https://github.com/devcontainers/features/tree/main/src/powershell
@@ -151,7 +151,7 @@
 	],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "dotnet clean || true && dotnet restore && dotnet build --configuration Debug",
+	"postCreateCommand": "chown vscode:vscode /home/vscode/.aspnet/https/aspnetapp.pfx && chown vscode:vscode /home/vscode/.aspnet/DataProtection-Keys && dotnet clean || true && dotnet restore && dotnet build --configuration Debug",
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
