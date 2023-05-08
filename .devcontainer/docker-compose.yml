@@ -55,14 +55,14 @@ services:
       - $HOME$APPDATA/Microsoft/UserSecrets:/home/vscode/.microsoft/usersecrets:cached
       # // $HOME is null Windows, so use $USERPROFILE instead. $USERPROFILE is null on Mac/Linux, so this works for both.
       - $HOME$USERPROFILE/.aspnet/https/aspnetapp.pfx:/home/vscode/.aspnet/https/aspnetapp.pfx:cached
-      - data-protection-keys:/home/vscode/.aspnet/DataProtection-Keys
+      #- data-protection-keys:/home/vscode/.aspnet/DataProtection-Keys
       - citus-socket:/var/run/postgresql/
     environment: *CITUS_AUTH
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
 
 volumes:
-    data-protection-keys:
+    #data-protection-keys:
     citus-socket:
     healthcheck-volume:
 

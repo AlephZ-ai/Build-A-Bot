@@ -78,9 +78,9 @@
 			"installUsingApt": "true"
 		},
 		// https://github.com/devcontainers-contrib/features/tree/main/src/bash-command
-		// "ghcr.io/devcontainers-contrib/features/bash-command:1": {
-		// 	"command": "bash"
-		// },
+		"ghcr.io/devcontainers-contrib/features/bash-command:1": {
+			"command": "chown vscode:vscode /home/vscode/.aspnet/https/aspnetapp.pfx"
+		},
 		// https://github.com/dev-wasm/dev-wasm-feature/blob/main/src/dotnet-wasi/devcontainer-feature.json
 		"devwasm.azurecr.io/dev-wasm/dev-wasm-feature/dotnet-wasi:0": {},
 		// https://github.com/devcontainers/features/tree/main/src/powershell
