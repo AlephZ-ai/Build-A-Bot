@@ -79,7 +79,7 @@
 		},
 		// https://github.com/devcontainers-contrib/features/tree/main/src/bash-command
 		"ghcr.io/devcontainers-contrib/features/bash-command:1": {
-			"command": "dotnet dev-certs https --trust"
+			"command": "cp -R /home/root/.microsoft/usersecrets /home/vscode/.microsoft/usersecrets && chown -R vscode:vscode /home/vscode/.microsoft/usersecrets && cp /home/root/.aspnet/https /home/vscode/.aspnet/https && chown -R vscode:vscode /home/vscode/.aspnet/https"
 		},
 		// https://github.com/dev-wasm/dev-wasm-feature/blob/main/src/dotnet-wasi/devcontainer-feature.json
 		"devwasm.azurecr.io/dev-wasm/dev-wasm-feature/dotnet-wasi:0": {},
@@ -151,13 +151,13 @@
 		{
 			// ${env:HOME} is null Windows, so use ${env:APPDATA} instead. ${env:APPDATA} is null on Mac/Linux, so this works for both.
 			"source": "${env:HOME}${env:APPDATA}/Microsoft/UserSecrets",
-			"target": "/home/vscode/.microsoft/usersecrets",
+			"target": "/home/root/.microsoft/usersecrets",
 			"type": "bind"
 		},
 		{
 			// ${env:HOME} is null Windows, so use ${env:USERPROFILE} instead. ${env:USERPROFILE} is null on Mac/Linux, so this works for both.
 			"source": "${env:HOME}${env:USERPROFILE}/.aspnet/https",
-			"target": "/home/vscode/.aspnet/https",
+			"target": "/home/root/.aspnet/https",
 			"type": "bind"
 		}
 	],
