@@ -3,7 +3,7 @@
 {
     "name": "Build-A-Bot Dev Container",
     "dockerComposeFile": "docker-compose.yml",
-    "service": "web",
+    "service": "build-a-bot",
     "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 	"customizations": {
 		"vscode": {
@@ -22,7 +22,10 @@
 				"GitHub.copilot-labs",
 				"github.vscode-github-actions",
 				"ms-vscode-remote.remote-containers"
-			]
+			],
+			"settings": {
+				"terminal.integrated.defaultProfile.linux": "zsh"
+			}
 		}
 	},
 
@@ -41,12 +44,34 @@
 		},
 		// https://github.com/rocker-org/devcontainer-features/tree/main/src/apt-packages
 		"ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
-			"packages": "postgresql-client",
+			"packages": "wget,sudo,curl,gnupg2",
 			"updatePackages": "true"
+		},
+		// https://github.com/devcontainers-contrib/features/tree/main/src/postgres-asdf
+		"ghcr.io/devcontainers-contrib/features/postgres-asdf:1": {
+			"version": "latest"
+		},
+		// https://github.com/devcontainers-contrib/features/tree/main/src/bash-command
+		// "ghcr.io/devcontainers-contrib/features/bash-command:1": {
+		// 	"command": "bash"
+		// },
+		// https://github.com/devcontainers/features/tree/main/src/dotnet
+		"ghcr.io/devcontainers/features/dotnet:1": {
+			"version": "latest",
+			"runtimeOnly": "false",
+			"installUsingApt": "true"
+		},
+		// https://github.com/dev-wasm/dev-wasm-feature/blob/main/src/dotnet-wasi/devcontainer-feature.json
+		"devwasm.azurecr.io/dev-wasm/dev-wasm-feature/dotnet-wasi:0": {},
+		// https://github.com/devcontainers/features/tree/main/src/powershell
+		"ghcr.io/devcontainers/features/powershell:1": {
+			"version": "latest",
+			"modules": "",
 		},
 		// https://github.com/devcontainers/features/tree/main/src/git
 		"ghcr.io/devcontainers/features/git:1": {
-			"version": "os-provided"
+			"version": "os-provided",
+			"ppa": "true"
 		},
 		// https://github.com/devcontainers/features/tree/main/src/git-lfs
 		"ghcr.io/devcontainers/features/git-lfs:1": {
@@ -70,11 +95,15 @@
 		// },
 		// https://github.com/devcontainers/features/tree/main/src/node
 		"ghcr.io/devcontainers/features/node:1": {
-			"version": "node"
+			"version": "node",
+			"nodeGypDependencies": "true",
+			"nvmVersion":"0.39.3"
 		},
 		// https://github.com/devcontainers/features/tree/main/src/azure-cli
 		"ghcr.io/devcontainers/features/azure-cli:1": {
-			"version": "latest"
+			"version": "latest",
+			"extensions": "",
+			"installBicep": "true"
 		},
 		// https://github.com/devcontainers/features/tree/main/src/github-cli
 		"ghcr.io/devcontainers/features/github-cli:1": {
@@ -91,8 +120,11 @@
 		}
 	},
 
-	// "remoteEnv": {
-	// },
+	"remoteEnv": {
+		"ASPNETCORE_ENVIRONMENT": "Development",
+		"ASPNETCORE_Kestrel__Certificates__Default__Password": "${env:ASPNETCORE_Kestrel__Certificates__Default__Password:-aspnetapp}",
+		"ASPNETCORE_Kestrel__Certificates__Default__Path": "/home/vscode/.aspnet/https/aspnetapp.pfx"
+	},
 
 	"mounts": [
 		{
@@ -127,7 +159,7 @@
 	//      "mounts": [ "source=${env:HOME}${env:USERPROFILE}/.aspnet/https,target=/home/vscode/.aspnet/https,type=bind" ],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "sudo chsh \"$(id -un)\" --shell \"/usr/bin/zsh\" && dotnet clean || true && dotnet restore && dotnet build --configuration Debug",
+	"postCreateCommand": "dotnet clean || true && dotnet restore && dotnet build --configuration Debug",
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"

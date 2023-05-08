@@ -1,36 +1,18 @@
 version: '3.8'
 
 services:
-  web:
-    environment:
-      ASPNETCORE_ENVIRONMENT: Development
-      ASPNETCORE_Kestrel__Certificates__Default__Password: devcertpass
-      ASPNETCORE_Kestrel__Certificates__Default__Path: /devcert.pfx
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        VARIANT: "7.0"
-
-    networks:
-      - default
-
-    volumes:
-      - ../..:/workspaces:cached
-      - data-protection-keys:/home/vscode/.aspnet/DataProtection-Keys
-
-    # Overrides default command so things don't shut down after the process ends.
-    command: sleep infinity
-
+  # Citus
   # https://github.com/citusdata/docker/blob/master/docker-compose.yml
   master:
     container_name: "${COMPOSE_PROJECT_NAME:-citus}_master"
     image: "citusdata/citus"
     restart: unless-stopped
-    ports: ["${COORDINATOR_EXTERNAL_PORT:-5432}:5432"]
+    ports: ["5342:5432"]
     labels: ["com.citusdata.role=Master"]
     networks:
       - default
+    volumes:
+      - citus-socket:/var/run/postgresql/
     environment: &AUTH
       POSTGRES_USER: "${POSTGRES_USER:-postgres}"
       POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:-postgres}"
@@ -59,9 +41,25 @@ services:
     command: "/wait-for-manager.sh"
     volumes:
       - healthcheck-volume:/healthcheck
- 
+
+  # Build-A-Bot
+  build-a-bot:
+    image: "mcr.microsoft.com/dotnet/runtime-deps"
+    labels: ["ai.alephz.role=Build-A-Bot DevContainer"]
+    depends_on: [worker]
+    networks:
+      - default
+    volumes:
+      - ../..:/workspaces:cached
+      - data-protection-keys:/home/vscode/.aspnet/DataProtection-Keys
+      - citus-socket:/var/run/postgresql/
+    environment: *AUTH
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+
 volumes:
     data-protection-keys:
+    citus-socket:
     healthcheck-volume:
 
 networks:
