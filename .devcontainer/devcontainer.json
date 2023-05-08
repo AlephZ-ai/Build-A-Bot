@@ -150,8 +150,8 @@
     "mounts": [
 		// ${env:HOME} is null Windows, so use ${env:APPDATA} instead. ${env:APPDATA} is null on Mac/Linux, so this works for both.
 		{
-			"source": "${env:HOME}${env:APPDATA}/Microsoft/UserSecrets",
-			"target": "/home/vscode/.microsoft/usersecrets",
+			"source": "${env:HOME}${env:APPDATA}/Microsoft/UserSecrets/Web.Server-da412385-0f15-461e-ab96-b3096d865e28",
+			"target": "/home/vscode/.microsoft/usersecrets/Web.Server-da412385-0f15-461e-ab96-b3096d865e28",
 			"type": "bind"
 		},
 		// ${env:HOME} is null Windows, so use ${env:USERPROFILE} instead. ${env:USERPROFILE} is null on Mac/Linux, so this works for both.
@@ -163,7 +163,7 @@
 	],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "chown vscode:vscode /home/vscode/.microsoft/usersecrets && chown vscode:vscode /home/vscode/.aspnet/https && chown vscode:vscode /home/vscode/.aspnet/DataProtection-Keys && dotnet clean || true && dotnet restore && dotnet build --configuration Debug",
+	"postCreateCommand": "chown vscode:vscode /home/vscode/.microsoft/usersecrets/Web.Server-da412385-0f15-461e-ab96-b3096d865e28 && chown vscode:vscode /home/vscode/.aspnet/https && chown vscode:vscode /home/vscode/.aspnet/DataProtection-Keys && dotnet clean || true && dotnet restore && dotnet build --configuration Debug",
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
